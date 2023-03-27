@@ -4,17 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeFragment">
+    android:padding="16dp"
+    tools:context=".CategoryFragment">
+
+    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/hello_home_fragment" />
+        android:layout_marginBottom="16dp"
+        android:text="@string/this_category" />
     <Button
-        android:id="@+id/btn_category"
+        android:id="@+id/btn_detail_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/to_category" />
+        android:text="@string/category_lifestyle" />
+
 </LinearLayout>

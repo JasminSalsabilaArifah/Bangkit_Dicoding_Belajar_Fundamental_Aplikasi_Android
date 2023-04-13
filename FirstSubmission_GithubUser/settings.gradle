@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "GirhubUser"
+rootProject.name = "GithubUser"
 include ':app'

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">GirhubUser</string>
+    <string name="app_name">GithubUser</string>
+    <string name="user">User Name</string>
 </resources>

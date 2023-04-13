@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import retrofit2.Call
+
 import retrofit2.Response
 import retrofit2.Callback
 import android.view.View
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
         val adapter = ReviewAdapter(listReview)
         binding.rvReview.adapter = adapter
-        binding.edReview.setText("")
+        binding.edReview .setText("")
     }
 
     private fun showLoading(isLoading: Boolean) {

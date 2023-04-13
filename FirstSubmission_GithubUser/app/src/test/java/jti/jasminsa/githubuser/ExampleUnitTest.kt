@@ -1,4 +1,4 @@
-package jti.jasminsa.girhubuser
+package jti.jasminsa.githubuser
 
 import org.junit.Test
 

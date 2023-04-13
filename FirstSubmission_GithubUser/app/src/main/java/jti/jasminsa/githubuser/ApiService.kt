@@ -7,7 +7,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @JvmSuppressWildcards
     @GET("search/users")
     fun getUser(
         @Query("q") Login : String

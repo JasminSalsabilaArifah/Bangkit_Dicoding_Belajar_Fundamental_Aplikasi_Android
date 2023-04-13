@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">GithubUser</string>
     <string name="user">User Name</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Cari user Github disini</string>
+
 </resources>

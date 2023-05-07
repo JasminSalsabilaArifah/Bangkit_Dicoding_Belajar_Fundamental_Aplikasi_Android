@@ -1,4 +1,4 @@
-package jti.jasminsa.githubuser
+package jti.jasminsa.githubuser.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

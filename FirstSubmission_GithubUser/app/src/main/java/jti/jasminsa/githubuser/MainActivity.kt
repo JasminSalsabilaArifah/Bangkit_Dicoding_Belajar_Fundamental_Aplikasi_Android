@@ -2,20 +2,23 @@ package jti.jasminsa.githubuser
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import jti.jasminsa.githubuser.api.DetailUserResponse
+import jti.jasminsa.githubuser.api.ItemsItem
 import jti.jasminsa.githubuser.databinding.ActivityMainBinding
+import java.util.Objects
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.isLoading.observe(this, {
             showLoading(it)
         })
+
     }
 
     private fun setUser(user: List<ItemsItem>) {
@@ -64,4 +68,6 @@ class MainActivity : AppCompatActivity() {
         })
         return true
     }
+
+
 }

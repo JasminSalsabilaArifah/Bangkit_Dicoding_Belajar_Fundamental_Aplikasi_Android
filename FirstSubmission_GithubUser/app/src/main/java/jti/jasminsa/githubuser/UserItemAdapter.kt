@@ -1,5 +1,7 @@
 package jti.jasminsa.githubuser
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import jti.jasminsa.githubuser.databinding.UserItemBinding
+import jti.jasminsa.githubuser.DetailUserActivity.Companion.USERNAME
+import jti.jasminsa.githubuser.api.DetailUserResponse
+import jti.jasminsa.githubuser.api.ItemsItem
 
 class UserItemAdapter(private val listUser: List<ItemsItem>) : RecyclerView.Adapter<UserItemAdapter.ViewHolder>() {
 
@@ -20,6 +24,12 @@ class UserItemAdapter(private val listUser: List<ItemsItem>) : RecyclerView.Adap
         Glide.with(viewHolder.itemView.context)
             .load(user.avatarUrl)
             .into(viewHolder.ivUser)// URL Gambar
+        val username = listUser[viewHolder.adapterPosition].login
+        viewHolder.itemView.setOnClickListener{
+            val intent = Intent(viewHolder.itemView.context, DetailUserActivity::class.java)
+            intent.putExtra(USERNAME, username)
+            viewHolder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = listUser.size

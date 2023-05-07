@@ -1,4 +1,4 @@
-package jti.jasminsa.githubuser
+package jti.jasminsa.githubuser.api
 
 import com.google.gson.annotations.SerializedName
 

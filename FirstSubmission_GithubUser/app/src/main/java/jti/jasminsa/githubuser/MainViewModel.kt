@@ -4,11 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import jti.jasminsa.githubuser.api.ApiConfig
+import jti.jasminsa.githubuser.api.DetailUserResponse
+import jti.jasminsa.githubuser.api.GithubResponse
+import jti.jasminsa.githubuser.api.ItemsItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Objects
 
-class MainViewModel : ViewModel(){
+class MainViewModel : ViewModel() {
 
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
@@ -16,39 +21,12 @@ class MainViewModel : ViewModel(){
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object{
+    companion object {
         private const val TAG = "MainViewModel"
-        private const val QUERY = " q"
     }
 
     init {
-        findUser()
-        findUser("jasmin")
-    }
-
-    fun findUser() {
-        _isLoading.value = true
-        val client = ApiConfig.getApiService().getUser(QUERY)
-        client.enqueue(object : Callback<GithubResponse> {
-            override fun onResponse(
-                call: Call<GithubResponse>,
-                response: Response<GithubResponse>
-            ) {
-                _isLoading.value = false
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    if (responseBody != null) {
-                        _listUser.value = response.body()?.items
-                    }
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
-                }
-            }
-            override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
-                _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
-            }
-        })
+        findUser("a")
     }
 
     fun findUser(username: String) {
@@ -69,6 +47,7 @@ class MainViewModel : ViewModel(){
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")

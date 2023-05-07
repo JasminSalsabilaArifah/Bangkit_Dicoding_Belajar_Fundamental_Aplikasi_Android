@@ -3,5 +3,10 @@
     <string name="user">User Name</string>
     <string name="search">Search</string>
     <string name="search_hint">Cari user Github disini</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="followeres">Followers</string>
+    <string name="following">Following</string>
+    <string name="detail">Detail User</string>
 
 </resources>

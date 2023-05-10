@@ -3,7 +3,6 @@ package jti.jasminsa.githubuser
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
@@ -24,8 +23,7 @@ class DetailUserActivity : AppCompatActivity() {
         @StringRes
         private val TAB_TITLES = intArrayOf(
             R.string.tab_text_2,
-            R.string.tab_text_1,
-            R.string.tab_text_2
+            R.string.tab_text_1
         )
     }
 
@@ -42,9 +40,9 @@ class DetailUserActivity : AppCompatActivity() {
             intent.getParcelableExtra(USERNAME)
         }
 
-        val detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(DetailViewModel::class.java)
-        detailViewModel.detailUser(gus.toString())
-        detailViewModel.dataDetailUser().observe(this, {brt ->
+        val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        mainViewModel.detailUser(gus.toString())
+        mainViewModel.dataDetailUser().observe(this, {brt ->
             brt?.let {
                 with(binding) {
                     tvName.text = brt.name ?: ""
@@ -56,7 +54,7 @@ class DetailUserActivity : AppCompatActivity() {
                         .into(ivDetailProfile)
                 }
         }})
-        detailViewModel.isLoading.observe(this, {
+        mainViewModel.isLoading.observe(this, {
             showLoading(it)
         })
 

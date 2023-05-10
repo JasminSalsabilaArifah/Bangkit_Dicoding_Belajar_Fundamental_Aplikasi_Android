@@ -9,11 +9,8 @@
     <string name="following">Following</string>
     <string name="detail">Detail User</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tab_follow">Follow</string>
     <string name="tab_text_1">Following</string>
     <string name="tab_text_2">Followers</string>
-    <string name="content_tab_text">get followers %1$d</string>
     <string name="followeres">followers</string>
 
 </resources>

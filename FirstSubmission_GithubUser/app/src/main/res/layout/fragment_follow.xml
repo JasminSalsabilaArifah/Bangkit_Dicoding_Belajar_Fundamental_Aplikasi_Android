@@ -5,12 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".FollowFragment">
 
-
-    <TextView
-        android:id="@+id/section_label"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFollowList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/tab_follow" />
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_gravity="center"/>
 </FrameLayout>

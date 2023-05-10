@@ -6,11 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import jti.jasminsa.githubuser.api.ApiConfig
 import jti.jasminsa.githubuser.api.DetailUserResponse
-import jti.jasminsa.githubuser.api.ItemsItem
 import retrofit2.Response
 import retrofit2.Callback
 import retrofit2.Call
-import java.util.*
 
 class DetailViewModel : ViewModel() {
 
@@ -18,15 +16,6 @@ class DetailViewModel : ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-
-    companion object{
-        private const val TAG = "DetailViewModel"
-        private const val EXUSERNAME = "exusername"
-    }
-
-//    init {
-//        detailUser()
-//    }
 
     fun detailUser(username : String) {
         _isLoading.value = true

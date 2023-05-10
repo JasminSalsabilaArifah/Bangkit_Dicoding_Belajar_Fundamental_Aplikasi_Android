@@ -1,7 +1,6 @@
 package jti.jasminsa.githubuser
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import jti.jasminsa.githubuser.DetailUserActivity.Companion.USERNAME
-import jti.jasminsa.githubuser.api.DetailUserResponse
 import jti.jasminsa.githubuser.api.ItemsItem
 
 class UserItemAdapter(private val listUser: List<ItemsItem>) : RecyclerView.Adapter<UserItemAdapter.ViewHolder>() {

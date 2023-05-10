@@ -5,15 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import jti.jasminsa.githubuser.api.ApiConfig
-import jti.jasminsa.githubuser.api.DetailUserResponse
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import jti.jasminsa.githubuser.databinding.ActivityDetailUserBinding
-import jti.jasminsa.githubuser.databinding.ActivityMainBinding
 
 @Suppress("INFERRED_TYPE_VARIABLE_INTO_POSSIBLE_EMPTY_INTERSECTION")
 class DetailUserActivity : AppCompatActivity() {
@@ -23,16 +21,22 @@ class DetailUserActivity : AppCompatActivity() {
     companion object {
         const val TAG = "DetailUserActivity"
         const val USERNAME = "username"
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_2,
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_detail_user)
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val gus = if (Build.VERSION.SDK_INT >= 33) {
-             intent.getParcelableExtra(USERNAME, TAG::class.java)
+            intent.getParcelableExtra(USERNAME, TAG::class.java)
         } else {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra(USERNAME)
@@ -41,18 +45,30 @@ class DetailUserActivity : AppCompatActivity() {
         val detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(DetailViewModel::class.java)
         detailViewModel.detailUser(gus.toString())
         detailViewModel.dataDetailUser().observe(this, {brt ->
-            Log.e(TAG, "set setail user $brt}")
-            if (brt != null) {
-                binding.tvUserName.text = brt.login
-                binding.tvName.text = brt.name ?: ""
-                Glide.with(this)
-                    .load(brt.avatarUrl)
-                    .into(binding.ivDetailProfile)
-            }
-        })
+            brt?.let {
+                with(binding) {
+                    tvName.text = brt.name ?: ""
+                    tvUserName.text = brt.login ?: ""
+                    tvFollowers.text = "${brt.followers} Followers"
+                    tvFollowing.text = "${brt.following} Following"
+                    Glide.with(this@DetailUserActivity)
+                        .load(brt.avatarUrl)
+                        .into(ivDetailProfile)
+                }
+        }})
         detailViewModel.isLoading.observe(this, {
             showLoading(it)
         })
+
+        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        sectionsPagerAdapter.username = gus.toString()
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLES[position])
+        }.attach()
+        supportActionBar?.elevation = 0f
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -68,4 +84,3 @@ class DetailUserActivity : AppCompatActivity() {
         return true
     }
 }
-

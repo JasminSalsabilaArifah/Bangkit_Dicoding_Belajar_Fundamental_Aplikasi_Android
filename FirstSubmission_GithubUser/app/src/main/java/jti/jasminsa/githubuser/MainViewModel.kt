@@ -5,13 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import jti.jasminsa.githubuser.api.ApiConfig
-import jti.jasminsa.githubuser.api.DetailUserResponse
 import jti.jasminsa.githubuser.api.GithubResponse
 import jti.jasminsa.githubuser.api.ItemsItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Objects
 
 class MainViewModel : ViewModel() {
 
@@ -44,13 +42,13 @@ class MainViewModel : ViewModel() {
                         _listUser.value = response.body()?.items
                     }
                 } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure1: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message}")
+                Log.e(TAG, "onFailurea: ${t.message}")
             }
         })
     }

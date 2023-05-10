@@ -2,19 +2,15 @@ package jti.jasminsa.githubuser
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import jti.jasminsa.githubuser.api.DetailUserResponse
 import jti.jasminsa.githubuser.api.ItemsItem
 import jti.jasminsa.githubuser.databinding.ActivityMainBinding
-import java.util.Objects
 
 class MainActivity : AppCompatActivity() {
 

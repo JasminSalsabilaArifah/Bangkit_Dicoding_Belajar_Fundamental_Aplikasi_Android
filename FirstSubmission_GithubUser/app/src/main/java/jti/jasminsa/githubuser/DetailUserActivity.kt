@@ -1,6 +1,5 @@
 package jti.jasminsa.githubuser
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -33,12 +32,7 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val gus = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra(USERNAME, TAG::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(USERNAME)
-        }
+        val gus = intent.getStringExtra(USERNAME)
 
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         mainViewModel.detailUser(gus.toString())

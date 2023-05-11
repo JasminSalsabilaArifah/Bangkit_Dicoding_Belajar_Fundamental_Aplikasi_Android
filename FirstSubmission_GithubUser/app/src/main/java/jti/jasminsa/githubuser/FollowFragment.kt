@@ -1,18 +1,13 @@
 package jti.jasminsa.githubuser
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.style.TtsSpan.ARG_USERNAME
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import jti.jasminsa.githubuser.api.ItemsItem
-import jti.jasminsa.githubuser.databinding.ActivityMainBinding
 import jti.jasminsa.githubuser.databinding.FragmentFollowBinding
 
 class FollowFragment : Fragment() {
@@ -34,6 +29,9 @@ class FollowFragment : Fragment() {
         if (username != null) {
             if (index != null) {
                 mainViewModel.follow(username, index)
+                mainViewModel.isLoading.observe(this, {
+                    showLoading(it)
+                })
             }
         }
         mainViewModel.datafollow().observe(viewLifecycleOwner) {
@@ -45,5 +43,9 @@ class FollowFragment : Fragment() {
     companion object {
         const val ARG_SECTION_NUMBER = "section_number"
         const val ARG_USERNAME = "username"
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

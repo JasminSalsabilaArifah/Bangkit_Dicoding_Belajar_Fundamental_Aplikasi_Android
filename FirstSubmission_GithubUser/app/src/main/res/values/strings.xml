@@ -12,5 +12,9 @@
     <string name="tab_text_1">Following</string>
     <string name="tab_text_2">Followers</string>
     <string name="followeres">followers</string>
+    <string name="favorite">Favorite User</string>
+    <string name="menu_2">Setting</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="setting">Setting</string>
 
 </resources>
